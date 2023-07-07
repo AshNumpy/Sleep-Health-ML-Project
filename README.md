@@ -16,10 +16,10 @@ The main objectives of the project are to analyze and visualize the data related
 
 <h3 align="center">Dashboards</h3>
 
-![Overview](./Imgs/Homepage.png)
-![Dashboard1](./Imgs/Demography.png)
-![Dashboard2](./Imgs/Health.png)
-![Dashboard3](./Imgs/Lifestyle.png)
+[![Overview](./Imgs/Homepage.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
+[![Dashboard1](./Imgs/Demography.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
+[![Dashboard2](./Imgs/Health.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
+[![Dashboard3](./Imgs/Lifestyle.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
 
 
 ---

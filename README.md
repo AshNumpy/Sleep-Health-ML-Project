@@ -25,7 +25,7 @@ The main objectives of the project are to analyze and visualize the data related
 ---
 
 <details>
-    <summary align="center">
+    <summary align="left">
             <b>About the Dataset</b>
     </summary>
     
@@ -48,7 +48,7 @@ The dataset consists of 400 rows and 13 columns, containing various variables re
 </details>
 
 <details>
-    <summary align="center">
+    <summary align="left">
             <b>Technologies Used</b>
     </summary>
 
@@ -61,7 +61,7 @@ The dataset consists of 400 rows and 13 columns, containing various variables re
 
 
 <details>
-    <summary align="center">
+    <summary align="left">
             <b>Installation and Usage</b>
     </summary>
     

@@ -1,11 +1,17 @@
-import streamlit as st
 from streamlit_option_menu import option_menu
+import streamlit as st
 import pandas as pd
 import numpy as np
+import joblib
+import plotly.graph_objects as go
+import streamlit as st
+import pickle
+import time 
+
 
 st.set_page_config(
     page_title="Stress Level Application",
-    page_icon="🧊",
+    page_icon="💤",
     initial_sidebar_state="expanded"
 )
 
@@ -32,8 +38,10 @@ selected = option_menu(
 )
 
 df = pd.read_csv('./Dataset/dataset.csv')
-df.drop(['Person ID'], axis=1, inplace=True)
-
+df.drop(['Person ID', 'Sick'], axis=1, inplace=True)
+df = df[['Gender', 'Age', 'Occupation', 'Sleep Duration', 'Quality of Sleep',
+       'Physical Activity Level', 'BMI Category', 'Heart Rate',
+       'Daily Steps', 'Sleep Disorder', 'BP High', 'BP Low', 'Stress Level']]
 
 if selected == "Home":
     with st.container():
@@ -73,16 +81,18 @@ if selected == "Home":
                     <li>Sleep disorder analysis: Determine the presence of sleep disorders such as insomnia and sleep apnea.</li>
                 </ul>
             </p>
-            <hr>
-            <p align='right'><a href="https://www.github.com/AshNumpy/Sleep-Health-ML-Project" target="_blank">View on GitHub</a></p>
+            <br>
+            <p align='right'>
+                <a href="https://www.github.com/AshNumpy/Sleep-Health-ML-Project" target="_blank">View on GitHub</a>
+                <br>
+                <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview" target="_blank">See Dashboard on Tableau</a>
+            </p>
             """,
             unsafe_allow_html=True
         )
 
 
 if selected == "Dataset":
-    import plotly.graph_objects as go
-    import streamlit as st
 
     fig = go.Figure(data=[go.Table(
         header=dict(
@@ -145,42 +155,331 @@ if selected == "Dataset":
 
 
 if selected == "Prediction":
-    features, result = st.columns((3,1))
-    
+
+    accuracies = dict(
+        mape=0.04,
+        rmse=0.37,
+        r2=0.97
+    )
+
+    st.markdown(
+    f"""
+    <h2 style="color:#176397">Prediction Model Accuracy Metrics</h2>
+
+    A machine learning study was conducted, and as a result, the Linear Regression model was chosen as the main model. 
+    The accuracy of the model was evaluated using **MAPE** (Mean Absolute Percentage Error), **RMSE** (Root Mean Square Error), and **R2** (R Squared) values. 
+    Based on the test results, the accuracy of the model was calculated as follows.
+
+    <div class="kpi-container">
+        <div class="kpi-box">
+            <span class="kpi-title">MAPE</span>
+            <span class="kpi-value">{accuracies['mape']*100}%</span>
+        </div>
+        <div class="kpi-box">
+            <span class="kpi-title">RMSE</span>
+            <span class="kpi-value">{accuracies['rmse']}</span>
+        </div>
+        <div class="kpi-box">
+            <span class="kpi-title">R2</span>
+            <span class="kpi-value">{accuracies['r2']*100}%</span>
+        </div>
+    </div>
+
+    <style>
+    .kpi-container {{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    }}
+
+    .kpi-box {{
+    flex-grow: 0.25;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+    border-radius: 100px;
+    background-color: #F2F2F2;
+    transition: box-shadow 0.3s;
+    }}
+
+    .kpi-box:hover {{
+    box-shadow: 0 0 10px #1D4665;
+    }}
+
+    .kpi-title {{
+    color: #176397;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 0px;
+    }}
+
+    .kpi-value {{
+    color: #1D4665;
+    font-size: 20px;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True)
+
+
+    st.write("---")
+
+    features, result = st.columns((4,2))
+
     with features:
-        st.write('#### Set The Features ')
+        st.markdown(
+            """
+                <h3 style="color:#176397">Set Features</h3>
+            """,unsafe_allow_html=True
+        )
+
+        def load_model():
+            """
+            The function `load_model()` loads a linear regression model from a pickle file.
+            
+            Returns:
+              a loaded linear regression model.
+            """
+            with open('./Models/model.pkl', 'rb') as f:
+                model = pickle.load(f)
+            return model
+
+        gender_le = joblib.load('./Models/gender_encoder.pkl')
+        occupation_le = joblib.load('./Models/occupation_encoder.pkl')
+        bmiCategory_le = joblib.load('./Models/bmi_category_encoder.pkl')
+        sleepDisorder_le = joblib.load('./Models/sleep_disorder_encoder.pkl')
+        scaler = joblib.load('./Models/scaler.pkl')
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            Gender = st.selectbox(
+                "Gender",
+                ("Male", "Female"),
+                label_visibility='collapsed',
+            )
+
+            age = st.slider(
+                "Age",
+                min_value=18,
+                max_value=65,
+                value=30,
+                step=1
+            )
+
+            Occupation = st.selectbox(
+                "Occupation",
+                (df['Occupation'].unique()),
+                label_visibility='collapsed',
+            )
+
+            sleepDuration = st.slider(
+                "Sleep Duration (Hours)",
+                min_value=0.0,
+                max_value=24.0,
+                value=7.0,
+                step=0.1,
+                format="%.1f"
+            )
+
+            sleepQuality = st.slider(
+                "Sleep Quality (1-10)",
+                min_value=0,
+                max_value=10,
+                value=3,
+                step=1
+            )
+
+            physicalActivity = st.slider(
+                "Physical Activity Level (%)",
+                min_value=0.0,
+                max_value=100.0,
+                value=50.0,
+                step=1.0,
+                format="%.1f"
+            )
+
+        with col2:
+            bmi = st.selectbox(
+                "BMI Category",
+                (df['BMI Category'].unique()),
+                label_visibility='collapsed',
+            )
+            restingHeartRate = st.slider(
+                "Resting Heart Rate",
+                min_value=60.0,
+                max_value=120.0,
+                value=60.0,
+                step=0.1,
+                format="%.1f"
+            )
+
+            sleepDisorder = st.selectbox(
+                "Sleep Disorder",
+                (df['Sleep Disorder'].unique()),
+                label_visibility='collapsed',
+            )
+
+            dailySteps = st.slider(
+                "Daily Steps",
+                min_value=0,
+                max_value=10000,
+                value=5000,
+                step=1
+            )
+
+            bloodPressureHigh = st.slider(
+                "High Blood Pressure",
+                min_value=90.0,
+                max_value=180.0,
+                value=120.0,
+                step=0.1,
+                format="%.1f"
+            )
+
+            bloodPressureLow = st.slider(
+                "Low Blood Pressure",
+                min_value=50.0,
+                max_value=120.0,
+                value=80.0,
+                step=0.1,
+                format="%.1f"
+            )
+
 
     with result:
-        st.write('#### Result ⬇️')
+        st.markdown(
+            """
+                <h3 style="color:#176397" align="center">Prediction</h3>
+            """,unsafe_allow_html=True
+        )
+
+        def get_user_input():
+            """
+            The function `get_user_input()` collects various user inputs related to health and returns
+            them as a dictionary.
+            """
+
+            prediction = {
+            'Gender': Gender,
+            'Age': age,
+            'Occupation': Occupation,
+            'Sleep Duration': sleepDuration,
+            'Quality of Sleep': sleepQuality,
+            'Physical Activity Level': physicalActivity,
+            'BMI Category': bmi,
+            'Heart Rate': restingHeartRate,
+            'Daily Steps': dailySteps,
+            'Sleep Disorder': sleepDisorder,
+            'BP High': bloodPressureHigh,
+            'BP Low': bloodPressureLow
+            }
+
+            prediction = pd.DataFrame(prediction, index=[0])
+            
+            return prediction
+
+        prediction = get_user_input()
+
+        prediction['Gender'] = gender_le.transform(prediction['Gender'])
+        prediction['Occupation'] = occupation_le.transform(prediction['Occupation'])
+        prediction['BMI Category'] = bmiCategory_le.transform(prediction['BMI Category'])
+        prediction['Sleep Disorder'] = sleepDisorder_le.transform(prediction['Sleep Disorder'])
+
+        numerical_features = ['Age',
+                            'Sleep Duration',
+                            'Quality of Sleep',
+                            'Physical Activity Level',
+                            'Heart Rate',
+                            'Daily Steps',
+                            'BP High',
+                            'BP Low']
+
+        prediction[numerical_features] = scaler.transform(prediction[numerical_features])
+
+        with st.spinner('Wait for prediction...'):
+            model = load_model()
+            y_pred = model.predict(prediction)
+            time.sleep(1)
+            
+        st.markdown(
+        f"""
+        <p align="center">
+            The predicted stress level based on your selections on the left-hand side is as follows.
+        </p>
+        <div class="kpi-container1">
+            <div class="kpi-box1">
+                <span class="kpi-title1">Stress Level</span>
+                <span class="kpi-value1">{np.round(y_pred[0],2)}/10</span>
+            </div>
+        </div>
+
+        <style>
+        .kpi-container1 {{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 10vh;
+        }}
+
+        .kpi-box1 {{
+        flex-grow: 0.25;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px;
+        border-radius: 10px;
+        background-color: #F2F2F2;
+        transition: box-shadow 0.3s;
+        }}
+
+        .kpi-box:hover1 {{
+        box-shadow: 0 0 10px #1D4665;
+        }}
+
+        .kpi-title1 {{
+        color: #176397;
+        font-size: 14px;
+        font-weight: bold;
+        font-family: 'Poppins', sans-serif;
+        margin-bottom: 0px;
+        }}
+
+        .kpi-value1 {{
+        color: #1D4665;
+        font-size: 20px;
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True)        
+
+
+st.write('---')
 
 if selected == "Contact":
 
-    contact_page_path = './ContactPage/index.html'
-    contact_page_css_path ='./ContactPage/style.css' 
+    html_path = './ContactPage/index.html'
+    css_path ='./ContactPage/style.css' 
 
-    def getContactPage(contact_page_path, contact_page_css_path):
-        with open(f'{contact_page_path}', 'r') as file:
-            contact_file = file.read()
+    def get_contact_page(css_path, html_path):
+        with open(css_path, 'r', encoding='utf-8') as f:
+            contact_page_css = f.read()
         
-        with open(f'{contact_page_css_path}', 'r') as file:
-            contact_css_file = file.read()
+        with open(html_path, 'r', encoding='utf-8') as f:
+            contact_page = f.read()
 
-        return contact_file, contact_css_file
+        return contact_page_css, contact_page
 
-    contact_file, contact_css_file = getContactPage(contact_page_path, contact_page_css_path)
+    contact_page, contact_css_file = get_contact_page(html_path, css_path)
 
     st.markdown(
         f"""
         <style>
             {contact_css_file}
         </style>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        f"""
-        {contact_file}
+        {contact_page}
         """,
         unsafe_allow_html=True
     )

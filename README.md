@@ -14,13 +14,68 @@ The main objectives of the project are to analyze and visualize the data related
 - Cardiovascular health analysis: Examine blood pressure and resting heart rate measurements.
 - Sleep disorder analysis: Determine the presence of sleep disorders such as insomnia and sleep apnea.
 
-<h3 align="center">Dashboards</h3>
+<style>
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
 
-[![Overview](./Imgs/Homepage.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
-[![Dashboard1](./Imgs/Demography.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
-[![Dashboard2](./Imgs/Health.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
-[![Dashboard3](./Imgs/Lifestyle.png)](https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview)
+.image-item {
+    width: 100%;
+}
 
+.image-item img {
+    width: 100%;
+  height: auto;
+}
+</style>
+
+<br>
+<div align="center">
+<b style="font-size: 16px;">Dashbaord Screenshots</b>
+
+<a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"><i>Click for interactive Tableau Dashboard</i></a>
+<div>
+<div class="image-grid">
+  <div class="image-item">
+    <img src="./Imgs/Homepage.png" alt="Image 1">
+  </div>
+  <div class="image-item">
+    <img src="./Imgs/Demography.png" alt="Image 2">
+  </div>
+  <div class="image-item">
+    <img src="./Imgs/Health.png" alt="Image 3">
+  </div>
+  <div class="image-item">
+    <img src="./Imgs/Lifestyle.png" alt="Image 4">
+  </div>
+</div>
+
+<br>
+
+<br>
+
+<div align="center">
+<b style="font-size: 16px;">Web Application Screenshots</b>
+
+<a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"><i>Click for Web Application</i></a>
+<div>
+<div>
+<div class="image-grid">
+  <div class="image-item">
+    <img src="1" alt="Image 1">
+  </div>
+  <div class="image-item">
+    <img src="2" alt="Image 2">
+  </div>
+  <div class="image-item">
+    <img src="3" alt="Image 3">
+  </div>
+  <div class="image-item">
+    <img src="3" alt="Image 4">
+  </div>
+</div>
 
 ---
 

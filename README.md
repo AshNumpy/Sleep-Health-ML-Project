@@ -14,23 +14,6 @@ The main objectives of the project are to analyze and visualize the data related
 - Cardiovascular health analysis: Examine blood pressure and resting heart rate measurements.
 - Sleep disorder analysis: Determine the presence of sleep disorders such as insomnia and sleep apnea.
 
-<style>
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
-}
-
-.image-item {
-    width: 100%;
-}
-
-.image-item img {
-    width: 100%;
-  height: auto;
-}
-</style>
-
 <br>
 <div align="center">
 <b style="font-size: 16px;">Dashbaord Screenshots</b>

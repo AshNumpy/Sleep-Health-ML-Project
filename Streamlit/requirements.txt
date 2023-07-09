@@ -1,0 +1,6 @@
+streamlit_option_menu==0.3.6
+streamlit==1.23.1
+pandas==1.23.1
+numpy==1.23.5
+joblib==1.2.0
+plotly==5.14.1

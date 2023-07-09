@@ -81,6 +81,7 @@ if selected == "Home":
                     <li>Sleep disorder analysis: Determine the presence of sleep disorders such as insomnia and sleep apnea.</li>
                 </ul>
             </p>
+            <hr>
             <br>
             <p align='right'>
                 <a href="https://www.github.com/AshNumpy/Sleep-Health-ML-Project" target="_blank">View on GitHub</a>
@@ -90,6 +91,7 @@ if selected == "Home":
             """,
             unsafe_allow_html=True
         )
+    
 
 
 if selected == "Dataset":
@@ -453,10 +455,10 @@ if selected == "Prediction":
         }}
         </style>
         """,
-        unsafe_allow_html=True)        
+        unsafe_allow_html=True)       
 
+    st.write('---') 
 
-st.write('---')
 
 if selected == "Contact":
 

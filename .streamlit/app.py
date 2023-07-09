@@ -36,7 +36,7 @@ selected = option_menu(
     }
 )
 
-df = pd.read_csv('./Dataset/dataset.csv')
+df = pd.read_csv('./.streamlit/Dataset/dataset.csv')
 df.drop(['Person ID', 'Sick'], axis=1, inplace=True)
 df = df[['Gender', 'Age', 'Occupation', 'Sleep Duration', 'Quality of Sleep',
        'Physical Activity Level', 'BMI Category', 'Heart Rate',
@@ -46,7 +46,7 @@ if selected == "Home":
     with st.container():
 
         st.image(
-            './Images/Homepage.png',
+            './.streamlit/Images/Homepage.png',
             use_column_width=True
         )
 
@@ -242,15 +242,15 @@ if selected == "Prediction":
             Returns:
               a loaded linear regression model.
             """
-            with open('./Models/model.pkl', 'rb') as f:
+            with open('./.streamlit/Models/model.pkl', 'rb') as f:
                 model = pickle.load(f)
             return model
 
-        gender_le = joblib.load('./Models/gender_encoder.pkl')
-        occupation_le = joblib.load('./Models/occupation_encoder.pkl')
-        bmiCategory_le = joblib.load('./Models/bmi_category_encoder.pkl')
-        sleepDisorder_le = joblib.load('./Models/sleep_disorder_encoder.pkl')
-        scaler = joblib.load('./Models/scaler.pkl')
+        gender_le = joblib.load('./.streamlit/Models/gender_encoder.pkl')
+        occupation_le = joblib.load('./.streamlit/Models/occupation_encoder.pkl')
+        bmiCategory_le = joblib.load('./.streamlit/Models/bmi_category_encoder.pkl')
+        sleepDisorder_le = joblib.load('./.streamlit/Models/sleep_disorder_encoder.pkl')
+        scaler = joblib.load('./.streamlit/Models/scaler.pkl')
 
         col1, col2 = st.columns(2)
 
@@ -460,8 +460,8 @@ if selected == "Prediction":
 
 if selected == "Contact":
 
-    html_path = './ContactPage/index.html'
-    css_path ='./ContactPage/style.css' 
+    html_path = './.streamlit/ContactPage/index.html'
+    css_path ='./.streamlit/ContactPage/style.css' 
 
     def get_contact_page(css_path, html_path):
         with open(css_path, 'r', encoding='utf-8') as f:

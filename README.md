@@ -1,4 +1,5 @@
-<h2 align="center"> Sleep and Health Quality Analysis & Stress Level Prediction Web Application</h2>
+<h2 align="center"> Sleep and Health Quality Analysis</h2>
+<h2 align="center"> Stress Level Prediction Web Application</h2>
 
 ### Project Overview
 This project includes the analysis of sleep health and lifestyle dataset and an application for predicting stress levels using machine learning.

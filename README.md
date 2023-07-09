@@ -1,9 +1,7 @@
-<h2 align="center"> Sleep Quality & Stress Level</h2>
+<h2 align="center"> Sleep and Health Quality Analysis & Stress Level Prediction Web Application</h2>
 
 ### Project Overview
 This project includes the analysis of sleep health and lifestyle dataset and an application for predicting stress levels using machine learning.
-
-The dataset consists of 400 rows and 13 columns, encompassing various demographic, health, and lifestyle variables.
 
 ### Project Objectives
 The main objectives of the project are to analyze and visualize the data related to health, lifestyle, and demographic factors, derive actionable insights from the visualizations, and predict stress levels of individuals using machine learning techniques.
@@ -16,22 +14,30 @@ The main objectives of the project are to analyze and visualize the data related
 
 <br>
 <div align="center">
-<b style="font-size: 16px;">Dashbaord Screenshots</b>
+<b style="font-size: 16px;">Dashboard Screenshots</b>
 
 <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"><i>Click for interactive Tableau Dashboard</i></a>
 <div>
 <div class="image-grid">
   <div class="image-item">
+    <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview">
     <img src="./Imgs/Homepage.png" alt="Image 1">
+    </a>
   </div>
   <div class="image-item">
+    <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview">
     <img src="./Imgs/Demography.png" alt="Image 2">
+    </a>
   </div>
   <div class="image-item">
+    <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview">
     <img src="./Imgs/Health.png" alt="Image 3">
+    </a>
   </div>
   <div class="image-item">
+    <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview">
     <img src="./Imgs/Lifestyle.png" alt="Image 4">
+    </a>
   </div>
 </div>
 
@@ -42,21 +48,29 @@ The main objectives of the project are to analyze and visualize the data related
 <div align="center">
 <b style="font-size: 16px;">Web Application Screenshots</b>
 
-<a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"><i>Click for Web Application</i></a>
+<a href="https://sleep-health-ml-project.streamlit.app/"><i>Click for Web Application</i></a>
 <div>
 <div>
 <div class="image-grid">
   <div class="image-item">
-    <img src="1" alt="Image 1">
+    <a href="https://sleep-health-ml-project.streamlit.app/">
+    <img src="./Imgs/app_homePage.png" alt="Image 1">
+    </a>
   </div>
   <div class="image-item">
-    <img src="2" alt="Image 2">
+    <a href="https://sleep-health-ml-project.streamlit.app/">
+    <img src="./Imgs/app_Dataset.png" alt="Image 2">
+    </a>
   </div>
   <div class="image-item">
-    <img src="3" alt="Image 3">
+    <a href="https://sleep-health-ml-project.streamlit.app/">
+    <img src="./Imgs/app_Prediction.png" alt="Image 3">
+    </a>
   </div>
   <div class="image-item">
-    <img src="3" alt="Image 4">
+    <a href="https://sleep-health-ml-project.streamlit.app/">
+    <img src="./Imgs/app_Contact.png" alt="Image 4">
+    </a>
   </div>
 </div>
 
@@ -67,6 +81,7 @@ The main objectives of the project are to analyze and visualize the data related
             <b>About the Dataset</b>
     </summary>
     
+<div align="left">
 The dataset consists of 400 rows and 13 columns, containing various variables related to sleep health and lifestyle. The columns and their descriptions are as follows:
 
 1. Person ID: Unique identifier for each individual.
@@ -84,7 +99,9 @@ The dataset consists of 400 rows and 13 columns, containing various variables re
 13. Sleep Disorder: Presence or absence of a sleep disorder in the person (None, Insomnia, Sleep Apnea).
 
 </details>
+</div>
 
+<div align="left">
 <details>
     <summary align="left">
             <b>Technologies Used</b>
@@ -96,16 +113,27 @@ The dataset consists of 400 rows and 13 columns, containing various variables re
 - **Application Development:** Streamlit was used to develop the stress level prediction application.
 
 </details>
+</div>
 
-
+<div align="left">
 <details>
     <summary align="left">
             <b>Installation and Usage</b>
     </summary>
     
-PASS
+Just double click on the `install.bat` file on the main directory. Then you can run all things manually. 
+
+<b>
+Also dashboards and web application can be used online
+<ul>
+<li> <a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"> Dashboard</a> 
+<li> <a href="https://sleep-health-ml-project.streamlit.app/"> Web Application</a> 
+</ul>
+<b>
 
 </details>
+<div>
+
 
 <br>
 <br>

@@ -45,9 +45,12 @@ df = df[['Gender', 'Age', 'Occupation', 'Sleep Duration', 'Quality of Sleep',
 if selected == "Home":
     with st.container():
 
-        st.image(
-            './.streamlit/Images/Homepage.png',
-            use_column_width=True
+        # Resme tıklanınca yönlendirilecek URL
+        target_url = "https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"
+        
+        st.markdown(
+            f'<a href="{target_url}" target="_blank"><img src="./.streamlit/Images/Homepage.png" alt="Homepage Image" width="100%"></a>',
+            unsafe_allow_html=True
         )
 
         st.markdown(

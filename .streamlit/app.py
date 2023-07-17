@@ -47,9 +47,10 @@ if selected == "Home":
 
         # Resme tıklanınca yönlendirilecek URL
         target_url = "https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"
+        image_url = "https://raw.githubusercontent.com/AshNumpy/Sleep-Health-ML-Project/main/Imgs/Homepage.png"
         
         st.markdown(
-            f'<a href="{target_url}" target="_blank"><img src="./.streamlit/Images/Homepage.png" alt="Homepage Image" width="100%"></a>',
+            f'<a href="{target_url}" target="_blank"><img src="{image_url}" alt="Homepage Image" width="100%"></a>',
             unsafe_allow_html=True
         )
 

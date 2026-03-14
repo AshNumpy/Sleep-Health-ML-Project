@@ -3,6 +3,7 @@
 
 ### Project Overview
 This project includes the analysis of sleep health and lifestyle dataset and an application for predicting stress levels using machine learning.
+<a href="https://public.tableau.com/app/profile/ramazan.erduran1816/viz/StressLevelHealth/Overview"><i>Click for interactive Tableau Dashboard</i></a>
 
 ### Project Objectives
 The main objectives of the project are to analyze and visualize the data related to health, lifestyle, and demographic factors, derive actionable insights from the visualizations, and predict stress levels of individuals using machine learning techniques.
